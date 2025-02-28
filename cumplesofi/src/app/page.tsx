@@ -1,24 +1,26 @@
-'use client'
+'use client';
 import { useState, useEffect } from "react";
-import Image from "next/image";
+
+// Función movida fuera del componente
+function calculateTimeLeft() {
+  const eventDate = new Date("2025-04-05T20:30:00").getTime();
+  const now = new Date().getTime();
+  const difference = eventDate - now;
+  return {
+    days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+    hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+    minutes: Math.floor((difference / (1000 * 60)) % 60),
+    seconds: Math.floor((difference / 1000) % 60),
+  };
+}
 
 export default function Home() {
-  const eventDate = new Date("2025-04-05T20:30:00").getTime();
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-
-  function calculateTimeLeft() {
-    const now = new Date().getTime();
-    const difference = eventDate - now;
-    return {
-      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-      minutes: Math.floor((difference / (1000 * 60)) % 60),
-      seconds: Math.floor((difference / 1000) % 60),
-    };
-  }
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft);
 
   useEffect(() => {
-    const timer = setInterval(() => setTimeLeft(calculateTimeLeft()), 1000);
+    const timer = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
     return () => clearInterval(timer);
   }, []);
 
