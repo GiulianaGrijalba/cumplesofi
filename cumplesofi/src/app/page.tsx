@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 // Función movida fuera del componente
 function calculateTimeLeft() {
-  const eventDate = new Date("2025-04-05T20:30:00").getTime();
+  const eventDate = new Date("2025-04-05T21:00:00").getTime();
   const now = new Date().getTime();
   const difference = eventDate - now;
   return {
@@ -38,7 +38,7 @@ export default function Home() {
       <h2 className="text-xl font-semibold mt-0 text-white">_______________________________</h2>
       <div className="text-lg font-light mt-2 mb-2 text-white">Código de vestimenta: Elegante casual</div>
       <div className="text-lg mb-4 text-white">Te espero en <strong>Complejo Recreativo La Amistad</strong></div>
-      <div className="text-lg mb-6 text-white">Calle 538, N°1295 - El Pato a las 20:30 hs</div>
+      <div className="text-lg mb-6 text-white">Calle 538, N°1295 - El Pato a las 21 hs</div>
       
       {/* Contador estilizado */}
       <div className="mt-4 flex gap-4 text-white">
